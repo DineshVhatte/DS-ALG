@@ -15,6 +15,10 @@ public class ListExec {
 		Node.addNodeAtTheEnd(newNode, firstNode);
 		Node newNode2 = new Node(new Integer(31));
 		Node.addNodeAtTheEnd(newNode2, firstNode);
+		System.out.println("Before deletion");
+		Node.parseList(firstNode);
+		System.out.println("After deletion");
+		firstNode = Node.deleteLastNode(firstNode);
 		Node.parseList(firstNode);
 	}
 

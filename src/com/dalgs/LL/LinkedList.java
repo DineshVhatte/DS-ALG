@@ -56,7 +56,9 @@ public class Node {
 		Node currentNode = firstNode;
 		do {
 			System.out.println(currentNode);
-			if(currentNode.getNext() == null) {
+			if(currentNode == null) {
+				break;
+			} else if(currentNode.getNext() == null) {
 				break;
 			} else {
 				currentNode = currentNode.getNext();
@@ -97,10 +99,26 @@ public class Node {
 		this.data = data;
 	}
 	
-	public static void deleteLastNode(Node firstNode) {
+	public static Node deleteLastNode(Node firstNode) {
 		
+		if(firstNode == null || firstNode.getNext() == null) {
+			return null;
+		} else {
+			Node lastButOne = getLastButOneNode(firstNode);
+			lastButOne.setNext(null);
+			return firstNode;
+		}
 	}
 	
-	
+	public static Node getLastButOneNode(Node firstNode) {
+		Node currentNode = firstNode;
+		do {
+			if(currentNode.getNext().getNext() == null) {
+				return currentNode;
+			} else {
+				currentNode = currentNode.getNext();
+			}
+		} while(true);
+	}
 	
 }
