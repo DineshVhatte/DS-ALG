@@ -44,7 +44,7 @@ public class Symbolbalancing {
 		char[] forwardClosures = new char[]{'<','(','{','['};
 		char[] backwordClosures = new char[]{'>',')','}',']'};
 		Map<String, String> balanceMap = new HashMap<String, String>();
-		for(int)
+		//for(int)
 	}
 
 }
