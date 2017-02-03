@@ -40,7 +40,7 @@ public class StackArr {
 		} else {
 			String element = stack[top];
 			--top;
-			top = top == 0 ? --top : top;
+			//top = top == 0 ? --top : top;
 			return element;
 		}
 	}

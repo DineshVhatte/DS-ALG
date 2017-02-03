@@ -27,6 +27,8 @@ public class InfixToPostFix {
 	
 	static {
 		priorityMap = new HashMap<String, Integer>();
+		priorityMap.put(")", 7);
+		priorityMap.put("(", 6);
 		priorityMap.put("^", 5);
 		priorityMap.put("/", 4);
 		priorityMap.put("*", 3);
@@ -38,10 +40,11 @@ public class InfixToPostFix {
 		String input = null;
 		String output = "";
 		System.out.println("Please enter an infix representation which you want to convert ot postfix");
-		Scanner sc;
+		Scanner sc = new Scanner(System.in);
 		do {
-			sc = new Scanner(System.in);
-			input = sc.nextLine();
+			if(input == null) {
+				input = sc.nextLine();
+			}
 			System.out.println("the entered input is '" + input + "'\n");
 			
 			/***
@@ -50,7 +53,7 @@ public class InfixToPostFix {
 			 */
 			output = "";
 			char nextChar;
-			StackArr stack = new StackArr(input.length());
+			StackArr stack = new StackArr(input.length()*2);
 			for(int i = 0 ; i < input.length(); i++) {
 				nextChar = input.charAt(i);
 				if(!isOperator(nextChar)) {
@@ -60,26 +63,29 @@ public class InfixToPostFix {
 						
 						do {
 								output += stack.pop();
-						} while (!stack.pop().equals("("));
+						} while (!stack.top().equals("("));
+						// remove the ( char
+						stack.pop();
 					} else if(nextChar == '(') {
 						stack.push(String.valueOf(nextChar));
-					} else {
+					} else 
 						if(stack.isEmpty()) {
 							stack.push(String.valueOf(nextChar));
 						} else {
 							boolean halt = false;
 							do {
 								if(!stack.isEmpty()) {
-									output += stack.pop();
-								}
-								if(stack.isEmpty()) {
-									halt = true;
-								} else {
+									if(getPriority(String.valueOf(nextChar)) <= getPriority(stack.top())) {
+										output += stack.pop();
+										stack.push(String.valueOf(nextChar));
+										halt = true;
+									} else {
+										stack.push(String.valueOf(nextChar));
+										halt = true;
+									}
 									
-									halt = getPriority(String.valueOf(nextChar)) > getPriority(stack.top());
-								}
+								} 
 							} while (!halt);
-							stack.push(String.valueOf(nextChar));
 							/*if(getPriority(String.valueOf(nextChar)) > getPriority(stack.top())) {
 								stack.push(String.valueOf(nextChar));
 							} else {
@@ -89,20 +95,21 @@ public class InfixToPostFix {
 						
 						
 					}
-				}
+				//}
 			}
-			if(!stack.isEmpty()) {
+			do {
 				output += stack.pop();
-			}
+			} while (!stack.isEmpty());
 			System.out.println("The postfix expression is " + output);
 			System.out.println("do you want to process more expressions? Enter the expression or enter 'Exit' to exit");
+			input = sc.nextLine();
 		} while (!(input.equalsIgnoreCase("exit")));
 		
 		
 	}
 	
 	public static boolean isOperator(char ch) throws Exception {
-		if(ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^')  {
+		if(ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^'|| ch == '(' || ch == ')')  {
 			return true;
 		} else {
 			return false;
