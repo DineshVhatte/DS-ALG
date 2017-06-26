@@ -8,7 +8,7 @@ import com.dalgs.LL.LinkedList.Node;
 
 public class StackLL {
 
-	//Node node = new Node("");
+	Node node = new Node("");
 	private int top;
 	private LinkedList linkedList;
 	
