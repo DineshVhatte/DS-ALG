@@ -42,11 +42,11 @@ public class SolveNQueen {
 	
 	public static boolean solveNQueenUtil(int [][] board, int col) {
 		
-		if(col >= N) {
-			return true;
-		}
-		for(int i = 0; i < N; i++) {
-			
+		
+		for(int i = 0; i <= N; i++) {
+			if(i >= N) {
+				return true;
+			}
 			if(isSafe(board, i, col)) {
 				board[i][col] = 1;
 				
@@ -77,7 +77,7 @@ public class SolveNQueen {
 		}
 		
 		/**** d**/
-		for(int i = row, j = col; i<N && j<N; i--,j--) {
+		for(int i = row, j = col; i>0 && j<0; i--,j--) {
 			if(board[i][j] == 1) {
 				return false;
 			}
