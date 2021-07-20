@@ -4,12 +4,12 @@ import java.util.Arrays;
 
 public class StackArr {
 
-	private String stack[];
+	private Object stack[];
 	private int top;
 	
 	public StackArr(int size) {
 		super();
-		stack = new String[size];
+		stack = new Object[size];
 		top = -1;
 	}
 	
@@ -17,7 +17,7 @@ public class StackArr {
 		return top == -1 ? true : false;
 	}
 	
-	public int push(String element) throws Exception {
+	public int push(Object element) throws Exception {
 		if(top == 10) { 
 			throw new Exception("Stack overflow exception");
 		} else {
@@ -27,18 +27,18 @@ public class StackArr {
 		}
 	}
 	
-	public String top() throws Exception {
+	public Object top() throws Exception {
 		if(top == -1) {
 			throw new Exception("Empty Stack");
 		} else {
 			return stack[top];
 		}
 	}
-	public String pop() throws Exception {
+	public Object pop() throws Exception {
 		if(top == -1) {
 			throw new Exception("Empty Stack");
 		} else {
-			String element = stack[top];
+			Object element = stack[top];
 			--top;
 			//top = top == 0 ? --top : top;
 			return element;

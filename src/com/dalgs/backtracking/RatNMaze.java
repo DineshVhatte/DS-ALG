@@ -48,6 +48,7 @@ public class RatNMaze {
 	public static boolean solveRatMazeUtil(int[][] maze, int[][] solution, int x, int y) {
 		
 		if(x == N-1 && y == N-1) {
+			solution[x][y] = 1;
 			return true;
 		} else {
 			if(isSafe(x, y, maze)) {

@@ -75,7 +75,7 @@ public class InfixToPostFix {
 							boolean halt = false;
 							do {
 								if(!stack.isEmpty()) {
-									if(getPriority(String.valueOf(nextChar)) <= getPriority(stack.top())) {
+									if(getPriority(String.valueOf(nextChar)) <= getPriority(stack.top().toString())) {
 										output += stack.pop();
 										stack.push(String.valueOf(nextChar));
 										halt = true;

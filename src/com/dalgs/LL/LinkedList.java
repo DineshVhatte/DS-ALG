@@ -142,6 +142,22 @@ public class LinkedList {
 		return head == null ? true : false;
 	}
 	
+	public int size() {
+		int count = 0;
+		Node currentNode = head;
+		if(currentNode != null) {
+			count = 0;
+		}
+		do {
+			count++;
+			currentNode = currentNode.getNext();
+		}while (currentNode != null);
+		return count;
+	}
+	
+	public Object printCurrentNode() {
+		return head.getData();
+	}
 	
 	
 }

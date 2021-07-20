@@ -2,7 +2,7 @@ package com.dalgs.STK;
 
 
 import com.dalgs.LL.LinkedList;
-import com.dalgs.LL.LinkedList.Node;
+import com.dalgs.LL.Node;
 
 
 
@@ -19,18 +19,18 @@ public class StackLL {
 		this.linkedList = new LinkedList();
 	}
 
-	public LinkedList.Node push(Object data) {
-		LinkedList.Node node = null;
+	public Node push(Object data) {
+		Node node = null;
 		node = linkedList.addNodeAtTheStart(data);
 		return node;
 	}
 	
-	public Object top() {
+	public Node top() {
 		return linkedList.getFirstNode();
 	}
 	
-	public Object pop() {
-		Object object = linkedList.getFirstNode();
+	public Node pop() {
+		Node object = linkedList.getFirstNode();
 		linkedList.deleteFirstNode();
 		return object;
 	}
@@ -51,6 +51,12 @@ public class StackLL {
 		return printString;
 	}
 	
+	
+	
+	public int size() {
+		return linkedList.size();
+	}
+	
 	/**
 	 * @param args
 	 */
@@ -58,10 +64,10 @@ public class StackLL {
 		StackLL stackLL = new StackLL();
 		stackLL.push(new String("first"));
 		stackLL.push(new String("second"));
-		System.out.println(stackLL);
-		System.out.println(stackLL.top());
-		//System.out.println(stackLL.pop());
-		System.out.println(stackLL);
+		System.out.println("Stack is \n" + stackLL);
+		System.out.println("\nStack top is " + stackLL.top().getData());
+		System.out.println("\npopped item from stack is " + stackLL.pop());
+		System.out.println("current stack is \n" + stackLL);
 	}
 
 }
